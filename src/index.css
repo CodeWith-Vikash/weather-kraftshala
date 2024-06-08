@@ -55,7 +55,7 @@ button{
   border: none;
   cursor: pointer;
   background-color: rgb(154, 152, 152);
-  box-shadow: 1px 1px 10px;
+  /* box-shadow: 1px 1px 10px; */
 }
 button .circle{
   height: 25px;
