@@ -1,13 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../context/DataContext";
 import { FaLocationDot } from "react-icons/fa6";
 import Skeleton from '../loading/Skeleton'
 import './weather.css'
 
 const Card = () => {
-  const { iserror, isloading, maindata, subdata, data,getLocalDateTime,isdark} =
-    useContext(ApiContext);
-    const icon=`http://openweathermap.org/img/wn/${subdata?.icon}.png`
+  const { iserror, isloading, maindata, subdata, data,getLocalDateTime,isdark} =useContext(ApiContext);
+  const icon=`http://openweathermap.org/img/wn/${subdata?.icon}.png`
+  const {date,time} = getLocalDateTime(data.dt)
+  console.log(date,time);
   return isloading ? (
     <Skeleton/>
   ) : iserror?<p className="error">Something went wrong</p>:(
@@ -22,6 +23,7 @@ const Card = () => {
         <h3>
           <FaLocationDot /> {data?.name}
         </h3>
+        <h5>{date} || {time}</h5>
       </div>
       <section className="details">
          <div className="detail">

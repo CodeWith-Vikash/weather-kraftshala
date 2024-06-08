@@ -31,17 +31,12 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  function getLocalDateTime(unixTimestamp, timezoneOffset) {
-    const dateTimeMillis = (unixTimestamp + timezoneOffset) * 1000;
-    const localDateTime = new Date(dateTimeMillis);
-
-    const formattedDate = localDateTime.toISOString().slice(0, 10);
-    const formattedTime = localDateTime.toISOString().slice(11, 19);
-
-    return {
-      date: formattedDate,
-      time: formattedTime,
-    };
+  function getLocalDateTime(timestamp) {
+     const date = new Date(timestamp*1000)
+     return {
+       date:date.toDateString(),
+       time:date.toLocaleTimeString()
+     }
   }
 
 
