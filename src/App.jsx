@@ -7,10 +7,9 @@ import { ApiContext } from "./context/DataContext";
 import Card from "./components/weather/Card";
 
 const App = () => {
-  const [isdark, setisdark] = useState(false);
   const [city, setcity] = useState('')
   const circleref = useRef(null);
-  const {getWeatherData,showcard} = useContext(ApiContext)
+  const {getWeatherData,showcard,isdark,setisdark} = useContext(ApiContext)
 
   const toggleMode = () => {
     if (!isdark) {
@@ -33,12 +32,14 @@ const App = () => {
         <div className="search-bar" style={isdark ? { color: "black" } : null}>
           <input
             type="text"
+            autoFocus
             placeholder="Enter City name"
             style={isdark ? { backgroundColor: "white", color: "black" } : null}
             value={city}
             onChange={(e)=> setcity(e.target.value)}
+            onKeyDown={(e)=> e.key=='Enter' && getWeatherData(city)}
           />
-          <FaSearch size="1.2rem" className="search-icon" onClick={getWeatherData}/>
+          <FaSearch size="1.2rem" className="search-icon" onClick={()=> getWeatherData(city)}/>
         </div>
         <button onClick={toggleMode}>
           <div
