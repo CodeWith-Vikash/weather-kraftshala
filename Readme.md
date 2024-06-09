@@ -1,6 +1,6 @@
 
 # About the project
-   i have used html , css , React to create this project and used axios to fetch data from openweathermap api.
+   i have used html , css , React to create this project, Context api for state management and used axios to fetch data from openweathermap api.
 
 # Follow the steps given below to run this application locally
    1. git clone https://github.com/CodeWith-Vikash/weather-kraftshala.git
