@@ -9,16 +9,9 @@ import Card from "./components/weather/Card";
 const App = () => {
   const [city, setcity] = useState('')
   const circleref = useRef(null);
-  const {getWeatherData,showcard,isdark,setisdark} = useContext(ApiContext)
+  const {getWeatherData,showcard,isdark,toggleMode} = useContext(ApiContext)
 
-  const toggleMode = () => {
-    if (!isdark) {
-      circleref.current.style.transform = "translateX(120%)";
-    } else {
-      circleref.current.style.transform = "translateX(0%)";
-    }
-    setisdark(!isdark);
-  };
+
   return (
     <div
       className={`container ${isdark && "dark"}`}
@@ -29,6 +22,8 @@ const App = () => {
       }
     >
       <nav>
+        
+        {/* search bar */}
         <div className="search-bar" style={isdark ? { color: "black" } : null}>
           <input
             type="text"
@@ -41,7 +36,9 @@ const App = () => {
           />
           <FaSearch size="1.2rem" className="search-icon" onClick={()=> getWeatherData(city)}/>
         </div>
-        <button onClick={toggleMode}>
+
+        {/* dark mode toggle button */}
+        <button onClick={()=> toggleMode(circleref)}>
           <div
             className="circle"
             style={isdark ? { backgroundColor: "white" } : null}
@@ -51,7 +48,8 @@ const App = () => {
           </div>
         </button>
       </nav>
-      {/* main data */}
+
+      {/* weather card */}
       {showcard && <Card/>}
     </div>
   );

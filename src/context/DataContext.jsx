@@ -11,6 +11,8 @@ export const DataProvider = ({ children }) => {
   const [isdark, setisdark] = useState(false);
   const [showcard, setshowcard] = useState(false);
   const [data, setdata] = useState({});
+
+  // Fetching data from openweathrmap api
   const getWeatherData = async (city) => {
     setshowcard(true);
     setisloading(true);
@@ -21,7 +23,6 @@ export const DataProvider = ({ children }) => {
       setmaindata(res.data.main);
       setsubdata(res.data.weather[0]);
       setdata(res.data);
-      console.log(res.data);
       setiserror(false);
       setisloading(false);
     } catch (error) {
@@ -30,7 +31,8 @@ export const DataProvider = ({ children }) => {
       setisloading(false);
     }
   };
-
+  
+  // Function to convert timestamp in to date and time string
   function getLocalDateTime(timestamp) {
      const date = new Date(timestamp*1000)
      return {
@@ -38,6 +40,16 @@ export const DataProvider = ({ children }) => {
        time:date.toLocaleTimeString()
      }
   }
+
+  // Function to toggle dark mode
+  const toggleMode = (circleref) => {
+    if (!isdark) {
+      circleref.current.style.transform = "translateX(120%)";
+    } else {
+      circleref.current.style.transform = "translateX(0%)";
+    }
+    setisdark(!isdark);
+  };
 
 
   return (
@@ -52,7 +64,7 @@ export const DataProvider = ({ children }) => {
         showcard,
         getLocalDateTime,
         isdark,
-        setisdark
+        toggleMode
       }}
     >
       {children}
