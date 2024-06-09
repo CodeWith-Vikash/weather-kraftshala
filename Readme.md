@@ -12,4 +12,4 @@
    https://weather-kraftshala.vercel.app/
 
 # Issues
-   Background images takes time to load at first time
+  High quality Background images takes time to load at first time
