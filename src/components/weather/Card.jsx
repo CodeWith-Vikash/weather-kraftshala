@@ -25,7 +25,7 @@ const Card = () => {
   return isloading ? (
     <Skeleton />
   ) : iserror ? (
-    <p className="error">Something went wrong</p>
+      <img src="/error.png" alt="something went wrong" className="errorimg"/>
   ) : (
     <div
       className={`weather`}
