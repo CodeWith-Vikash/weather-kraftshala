@@ -5,6 +5,7 @@ import { IoSunnySharp } from "react-icons/io5";
 import { RiMoonClearFill } from "react-icons/ri";
 import { ApiContext } from "./context/DataContext";
 import Card from "./components/weather/Card";
+import Others from "./components/OtherLocations/Others";
 
 const App = () => {
   const [city, setcity] = useState('')
@@ -49,8 +50,12 @@ const App = () => {
         </button>
       </nav>
 
-      {/* weather card */}
+      <main>
+        {/* weather card */}
       {showcard && <Card/>}
+      {/* search for other locations */}
+      {showcard && <Others/>}
+      </main>
     </div>
   );
 };
